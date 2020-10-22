@@ -157,8 +157,8 @@ EU4::World::World(const CK3::World& sourceWorld, const Configuration& theConfigu
 	Log(LogLevel::Progress) << "75 %";
 
 	LOG(LogLevel::Info) << "-- Crafting Flags";
-	flagFoundry.loadImageFolder(theConfiguration);
-	flagFoundry.generateFlags(countries, theConfiguration);
+	flagFoundry.loadImageFolders(theConfiguration, sourceWorld.getMods());
+	flagFoundry.generateFlags(countries, theConfiguration, religionMapper.getGeneratedReligions());
 	Log(LogLevel::Progress) << "76 %";
 
 	// And finally, the Dump.
@@ -791,7 +791,7 @@ void EU4::World::resolvePersonalUnions()
 		}
 		else
 		{
-			Log(LogLevel::Warning) << country.first << " holder " << holder.first << " has nothing in domain. Great.";			
+			Log(LogLevel::Warning) << country.first << " holder " << holder.first << " has nothing in domain. Great.";
 		}
 	}
 
